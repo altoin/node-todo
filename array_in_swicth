@@ -1,0 +1,39 @@
+if(isset($msg['message']['quick_reply']))
+{
+  $user_ratings=$msg['message']['quick_reply']['payload'];
+  switch($user_ratings)
+  {
+    case "servicerate":
+        $rates['Name']='Our Service';
+        $rates['Rating']=$msg['message']['text'];
+        array_push($ratings,$rates);
+        $facebook->sendAction($sender);
+        sleep(2);
+        $facebook->recommend($sender);
+        break;
+    case "recommend":
+        $rates['Name']='Recommend';
+        $rates['Rating']=$msg['message']['text'];
+        array_push($ratings,$rates);
+        $facebook->sendAction($sender);
+        sleep(2);
+        $facebook->storeRating($sender);
+        break;
+    case "storeRating":
+        $rates['Name']='Store Ratings';
+        $rates['Rating']=$msg['message']['text'];
+        array_push($ratings,$rates);
+        $facebook->sendAction($sender);
+        sleep(2);
+        $facebook->outletRating($sender);
+        break;
+    case "outletRating":
+        $rates['Name']='Outlet Ratings';
+        $rates['Rating']=$msg['message']['text'];
+        array_push($ratings,$rates);
+        $facebook->sendAction($sender);
+        sleep(2);
+        break;
+  }
+ 
+}
