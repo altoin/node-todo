@@ -1,9 +1,16 @@
+$ratings=array();
+//Check if the message is a quick reply,it's like a button response in facebook messenger
 if(isset($msg['message']['quick_reply']))
 {
+  //whatever the payload is (i.e, the question) is, is assigned $user_ratings
   $user_ratings=$msg['message']['quick_reply']['payload'];
+  //Here i swiched the response
   switch($user_ratings)
   {
+  //So "servicerate" is the name i gave the question to rate our services..
     case "servicerate":
+    //As you can see here, the name of what you rate is "Our service".
+    //Value is set to whatever the user sends in.
         $rates['Name']='Our Service';
         $rates['Rating']=$msg['message']['text'];
         array_push($ratings,$rates);
